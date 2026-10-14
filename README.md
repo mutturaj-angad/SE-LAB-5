@@ -23,4 +23,4 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m flake8 scholarship_disbursement.py
 ```
 
-The repository includes preserved before-and-after reports for each analyzer. The original handout's `*_report.txt` names also contain the final analyzer outputs. See [issues.md](issues.md), [reflection.md](reflection.md), and [COMPLETION_REPORT.md](COMPLETION_REPORT.md) for the findings, reflection, and verification summary. The handout PDF was not included in the workspace, so the reflection is labelled as a draft rather than represented as answers to the exact instructor questions.
+The repository includes preserved before-and-after reports for each analyzer. The original handout's `*_report.txt` names also contain the final analyzer outputs. See [issues.md](issues.md), [reflection.md](reflection.md), and [COMPLETION_REPORT.md](COMPLETION_REPORT.md) for the findings, reflection, and verification summary. The supplied handout PDF gives a general reflection objective but no explicit question list; reflection.md responds to that objective without inventing questions.
