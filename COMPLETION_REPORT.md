@@ -6,6 +6,7 @@ Completed the scholarship ledger static-analysis lab. The application uses param
 
 ## Deliverables
 
+- .gitignore: excludes Python bytecode, virtual environments, and common test/coverage caches.
 - `scholarship_disbursement.py`: corrected application.
 - `test_scholarship_disbursement.py`: three regression tests.
 - `issues.md`: verified issue table with original line numbers, analyzer IDs, severity/confidence, fixes, and verification.
@@ -29,6 +30,10 @@ Verification was rerun in the repository clone on 2026-10-14 using Python 3.13.5
 - `.venv\Scripts\python.exe -m unittest discover -v`: **3 tests passed**.
 - Demo: exited successfully; printed `50000 None`, `1 50000`, and `archiving awards`.
 - `git show --check` passed for each of the three analyzer commits. The clone's working tree was clean after those commits.
+
+## Handout review
+
+Read the supplied Lab_5_Static_Code_Analysis_Student_handout.pdf (3 pages). It requires a cleaned script, an issue table covering at least four fixes, before/after reports, a Pylint score above 9.5, fixes for Bandit and Flake8 findings, and three commits. It gives a general reflection objective but no explicit reflection questions. Those deliverables and the three analyzer commits are present.
 
 ## Repository, commits, and push
 

@@ -1,19 +1,17 @@
-# Reflection (Draft)
+# Reflection
 
-The lab handout PDF and its exact four reflection questions were not present in the workspace. This is a clearly labelled draft based on the topics named in the README and task instructions; it does not claim to reproduce the instructor's questions.
+The supplied handout states that students should reflect on how static analysis contributes to code quality and maintainability, but it does not provide a separate list of exact reflection questions. The responses below address that stated reflection objective using the issues and results from this project.
 
-## 1. What issues did you find, and how did you fix them?
+## Issues found and fixes applied
 
-The original code built an SQL command by inserting student and scheme text directly into the query. I changed it to use SQLite placeholders so those values are treated as data. The `grant` function also used a list as its default argument, which could cause audit entries to be shared across calls. It now creates a new list when no audit list is supplied. The archive function invoked a shell command and silently ignored every exception, so I replaced it with a direct print operation. I also found by checking the behavior that disbursing the same award twice increased the total twice; the ledger now only disburses an unpaid award. Finally, I corrected naming, `None` comparison, documentation, and line-length issues.
+Bandit found SQL string interpolation that could allow SQL injection. I changed the insert to use SQLite placeholders. It also found shell execution and a broad exception handler that hid failures; I removed the shell command and printed the archive notice directly. Pylint identified a mutable list default, which could share audit data between calls, so the method now creates a new list unless one is passed in. I also tested the disbursement behavior and found that paying the same award twice increased the total twice. The ledger now selects only unpaid awards.
 
-## 2. How are Pylint, Bandit, and Flake8 different?
+## What the three tools contributed
 
-Pylint checks many aspects of Python code quality, such as naming, documentation, control flow, and common programming mistakes, and gives an overall score. Bandit searches Python syntax for patterns that can create security risks. Flake8 focuses on style and simple code problems such as unused imports and lines that exceed the configured length. Their results overlap in places, but each tool has a different focus.
+Pylint checked code quality and common programming mistakes, including naming, documentation, global state, and the mutable default. Bandit identified security-sensitive patterns, including SQL construction and shell use. Flake8 reported formatting problems such as long lines and a comparison to None. The tools overlap in some areas but bring different perspectives to a review.
 
-## 3. Why is static code analysis important?
+The original Pylint score was 5.00/10 and the final score was 10.00/10. Bandit reported one Medium and three Low findings before the fixes and no findings afterward. Flake8 reported six violations before the fixes and none afterward.
 
-Static analysis can find potential defects without needing every input or execution path to be run. It gives developers an early way to notice risky patterns and inconsistent code. The tools do not prove a program is correct, so their findings still need to be checked against the intended behavior and verified with tests.
+## Why static analysis matters
 
-## 4. What did you learn from comparing the reports and testing the fixes?
-
-The original Pylint score was 5.00/10. After the code changes, it was 10.00/10. Bandit first reported a medium SQL injection concern and three low-severity shell or exception-handling findings; the final Bandit report has no findings. Flake8 initially reported six style violations and the final report is empty. Regression tests also checked malicious-looking SQL input, independent audit lists, scheme counts, missing awards, and repeat disbursement. This showed me that analyzer output is useful, but behavioral tests can catch problems such as double-counting that these reports did not identify.
+Static analysis can flag risky code before it is exercised with every possible input. It made several issues in this small program easier to see and gave concrete diagnostics to verify after changes. The tools do not prove the application is correct: my repeat-disbursement test found a data-integrity bug that the analyzer reports did not flag. I learned to use analyzer results together with tests and a review of the program's behavior.
