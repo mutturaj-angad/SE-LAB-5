@@ -4,7 +4,7 @@ import sqlite3
 
 
 class AwardLedger:
-    """Store scholarship awards and track their disbursement totals for the office ledger."""
+    """Store scholarship awards and track their disbursement totals."""
 
     def __init__(self):
         self._connection = sqlite3.connect(":memory:")
@@ -16,7 +16,7 @@ class AwardLedger:
         self.disbursed_total = 0
 
     def grant(self, student, scheme, amount, audit=None):
-        """Record an award and append the student to a supplied audit list for tracking."""
+        """Record an award and add its student to the optional audit list."""
         self._connection.execute(
             "INSERT INTO awards (student, scheme, amount, disbursed) "
             "VALUES (?, ?, ?, 0)",
@@ -47,7 +47,7 @@ class AwardLedger:
         print("archiving awards")
 
     def by_scheme_count(self, scheme):
-        """Return how many awards use a scheme, or zero when a scheme has not been supplied."""
+        """Return the number of awards for a scheme, or zero for None."""
         if scheme is None:
             return 0
         return self._connection.execute(

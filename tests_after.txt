@@ -1,0 +1,8 @@
+test_audit_lists_are_independent_unless_supplied (test_scholarship_disbursement.AwardLedgerTests.test_audit_lists_are_independent_unless_supplied) ... ok
+test_award_can_be_disbursed_only_once (test_scholarship_disbursement.AwardLedgerTests.test_award_can_be_disbursed_only_once) ... ok
+test_grant_uses_values_as_data_and_counts_scheme (test_scholarship_disbursement.AwardLedgerTests.test_grant_uses_values_as_data_and_counts_scheme) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+OK
